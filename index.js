@@ -13,12 +13,15 @@ function driverNamesWithRevenueOver(drivers,revenue){
     )
 }
 
-function exactMatch(driver,obj){
-    return driver.filter(function(index){
-        return index['name'] == obj['name'] || index['revenue'] == obj['revenue']
-        }
-    )
-}
+function exactMatch (drivers, obj) {
+    return drivers.filter(function (driver) {
+      let matches = false;
+      for (const key in obj) {
+        matches = driver[key] === obj[key];
+      }
+      return matches;
+    });
+  }
 
 function exactMatchToList(driver,obj){
     return exactMatch(driver,obj).map(function(index){
